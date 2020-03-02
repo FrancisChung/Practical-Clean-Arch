@@ -90,7 +90,7 @@ namespace CaWorkshop.WebUI.Controllers
 
         // DELETE: api/TodoLists/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<TodoList>> DeleteTodoList(int id)
+        public async Task<IActionResult> DeleteTodoList(int id)
         {
             var todoList = await _context.TodoLists.FindAsync(id);
             if (todoList == null)
