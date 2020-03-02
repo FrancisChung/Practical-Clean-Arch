@@ -43,19 +43,6 @@ namespace CaWorkshop.WebUI.Controllers
                 }).ToListAsync();
         }
 
-        // GET: api/TodoLists/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<TodoList>> GetTodoList(int id)
-        {
-            var todoList = await _context.TodoLists.FindAsync(id);
-
-            if (todoList == null)
-            {
-                return NotFound();
-            }
-
-            return todoList;
-        }
 
         // PUT: api/TodoLists/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
