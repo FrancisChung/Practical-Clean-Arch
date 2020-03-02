@@ -12,6 +12,9 @@ namespace CaWorkshop.WebUI.Data
 {
     public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
     {
+        public DbSet<TodoItem> TodoItems { get; set; }
+        public DbSet<TodoList> TodoLists { get; set; }
+
         public ApplicationDbContext(
             DbContextOptions options,
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
