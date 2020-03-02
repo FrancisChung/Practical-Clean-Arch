@@ -21,12 +21,6 @@ namespace CaWorkshop.WebUI.Controllers
             _context = context;
         }
 
-        // GET: api/TodoItems
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItems()
-        {
-            return await _context.TodoItems.ToListAsync();
-        }
 
         // GET: api/TodoItems/5
         [HttpGet("{id}")]
