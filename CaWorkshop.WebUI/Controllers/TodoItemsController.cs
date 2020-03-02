@@ -67,7 +67,7 @@ namespace CaWorkshop.WebUI.Controllers
 
         // DELETE: api/TodoItems/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<TodoItem>> DeleteTodoItem(long id)
+        public async Task<IActionResult> DeleteTodoItem(long id)
         {
             var todoItem = await _context.TodoItems.FindAsync(id);
             if (todoItem == null)
@@ -78,7 +78,7 @@ namespace CaWorkshop.WebUI.Controllers
             _context.TodoItems.Remove(todoItem);
             await _context.SaveChangesAsync();
 
-            return todoItem;
+            return NoContent();
         }
 
         private bool TodoItemExists(long id)
