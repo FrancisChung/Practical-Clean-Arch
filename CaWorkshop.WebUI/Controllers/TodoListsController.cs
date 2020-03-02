@@ -80,12 +80,12 @@ namespace CaWorkshop.WebUI.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<TodoList>> PostTodoList(TodoList todoList)
+        public async Task<ActionResult<int>> PostTodoList(TodoList todoList)
         {
             _context.TodoLists.Add(todoList);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTodoList", new { id = todoList.Id }, todoList);
+            return todoList.Id;
         }
 
         // DELETE: api/TodoLists/5
