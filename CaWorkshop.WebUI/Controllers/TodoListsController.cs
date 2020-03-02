@@ -101,7 +101,7 @@ namespace CaWorkshop.WebUI.Controllers
             _context.TodoLists.Remove(todoList);
             await _context.SaveChangesAsync();
 
-            return todoList;
+            return NoContent();
         }
 
         private bool TodoListExists(int id)
