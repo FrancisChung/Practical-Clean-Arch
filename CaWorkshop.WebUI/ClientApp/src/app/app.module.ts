@@ -47,6 +47,6 @@ import { TodoComponent } from '../environments/todo/todo.component';
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
     { provide: API_BASE_URL, useValue: environment.apiBaseUrl}
   ],
-  
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
