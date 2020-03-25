@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CaWorkshop.WebUI.Models
+namespace CaWorkshop.Domain.Entities
 {
     public class TodoItem
     {
