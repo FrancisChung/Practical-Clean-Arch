@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using CaWorkshop.Domain.Entities;
 using CaWorkshop.Infrastructure.Identity;
 
-namespace CaWorkshop.WebUI.Data
+namespace CaWorkshop.Infrastructure.Persistence
 {
     public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
     {
