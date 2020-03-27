@@ -1,4 +1,5 @@
 ﻿
+using CaWorkshop.Application.Common.Interfaces;
 using CaWorkshop.Infrastructure.Identity;
 using CaWorkshop.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authentication;
@@ -13,7 +14,7 @@ namespace CaWorkshop.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services,
             IConfiguration configuration)
         {
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(
+            services.AddDbContext<IApplicationDbContext, ApplicationDbContext>(options => options.UseSqlite(
                 configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<ApplicationUser>()
