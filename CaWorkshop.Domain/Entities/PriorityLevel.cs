@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace CaWorkshop.Domain.Entities
+{ 
     public enum PriorityLevel
     {
         None,
