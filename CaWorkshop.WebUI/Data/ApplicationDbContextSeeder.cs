@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CaWorkshop.Domain.Entities;
-using CaWorkshop.WebUI.Models;
 
 namespace CaWorkshop.WebUI.Data
 {
