@@ -1,5 +1,4 @@
-﻿using CaWorkshop.WebUI.Models;
-using IdentityServer4.EntityFramework.Options;
+﻿using IdentityServer4.EntityFramework.Options;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -8,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CaWorkshop.Domain.Entities;
+using CaWorkshop.Infrastructure.Identity;
 
 namespace CaWorkshop.WebUI.Data
 {
