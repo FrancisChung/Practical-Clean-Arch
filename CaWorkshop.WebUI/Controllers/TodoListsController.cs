@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CaWorkshop.Application.TodoLists.Queries.GetTodoLists;
 using CaWorkshop.Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,24 +25,9 @@ namespace CaWorkshop.WebUI.Controllers
 
         // GET: api/TodoLists
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TodoList>>> GetTodoLists()
+        public async Task<ActionResult<IEnumerable<TodoList>>> GetTodoLists([FromServices] IGetTodoListsQuery query)
         {
-            return await _context.TodoLists
-                .Select(l => new TodoList
-                {
-                    Id    = l.Id,
-                    Title = l.Title,
-                    Items = l.Items.Select(i => new TodoItem
-                        {
-                            Id      = i.Id,
-                            ListId  = i.ListId,
-                            Title   = i.Title,
-                            Done    = i.Done,
-                            Priority= i.Priority,
-                            Note    = i.Note  
-                        }
-                        ).ToList()
-                }).ToListAsync();
+            return await query.Handle();
         }
 
 
