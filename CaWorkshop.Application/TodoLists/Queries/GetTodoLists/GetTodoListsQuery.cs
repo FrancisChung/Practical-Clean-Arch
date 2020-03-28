@@ -2,29 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using CaWorkshop.Application.Common.Interfaces;
 using CaWorkshop.Domain.Entities;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace CaWorkshop.Application.TodoLists.Queries.GetTodoLists
 {
-
-    public interface IGetTodoListsQuery
+    public class GetTodoListsQuery : IRequest<List<TodoList>>
     {
-        Task<List<TodoList>> Handle();
     }
 
-    public class GetTodoListsQuery : IGetTodoListsQuery
+    public class GetTodoListsQueryHandler
+        : IRequestHandler<GetTodoListsQuery, List<TodoList>>
     {
         private readonly IApplicationDbContext _context;
 
-        public GetTodoListsQuery(IApplicationDbContext context)
+        public GetTodoListsQueryHandler(IApplicationDbContext context)
         {
             _context = context;
         }
 
-        public async Task<List<TodoList>> Handle()
+        public async Task<List<TodoList>> Handle(
+            GetTodoListsQuery request,
+            CancellationToken cancellationToken)
         {
             return await _context.TodoLists
                 .Select(l => new TodoList
@@ -40,7 +43,7 @@ namespace CaWorkshop.Application.TodoLists.Queries.GetTodoLists
                         Priority = i.Priority,
                         Note = i.Note
                     }).ToList()
-                }).ToListAsync();
+                }).ToListAsync(cancellationToken);
         }
     }
 }
