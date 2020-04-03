@@ -20,7 +20,7 @@ namespace CaWorkshop.Application.TodoLists.Commands.CreateTodoList
             _context = context;
         }
 
-        public async Task<int> Hander(CreateTodoListCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(CreateTodoListCommand request, CancellationToken cancellationToken)
         {
             var entity = new TodoList();
             entity.Title = request.Title;
