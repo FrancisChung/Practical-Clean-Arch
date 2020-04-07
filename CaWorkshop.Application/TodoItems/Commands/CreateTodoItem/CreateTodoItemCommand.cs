@@ -4,15 +4,15 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CaWorkshop.Application.TodoItems.Commands
+namespace CaWorkshop.Application.TodoItems.Commands.CreateTodoItem
 {
-    public class CreateTodoItem : IRequest<long>
+    public class CreateTodoItemCommand : IRequest<long>
     {
         public int ListId { get; set; }
         public string Title { get; set; }
     }
 
-    public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItem, long>
+    public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemCommand, long>
     {
         private readonly IApplicationDbContext _context;
 
@@ -22,7 +22,7 @@ namespace CaWorkshop.Application.TodoItems.Commands
         }
 
 
-        public async Task<long> Handle(CreateTodoItem request, CancellationToken cancellationToken)
+        public async Task<long> Handle(CreateTodoItemCommand request, CancellationToken cancellationToken)
         {
             var entity = new TodoItem
             {
