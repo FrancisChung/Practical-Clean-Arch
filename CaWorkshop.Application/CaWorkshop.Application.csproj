@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <Folder Include="TodoItems\Commands\DeleteTodoItem\" />
-    <Folder Include="TodoItems\Commands\UpdateTodoItem\" />
   </ItemGroup>
 
   <PropertyGroup>
