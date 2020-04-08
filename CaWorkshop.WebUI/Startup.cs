@@ -12,7 +12,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CaWorkshop.Application;
+using CaWorkshop.Application.Common.Interfaces;
 using CaWorkshop.Infrastructure;
+using FluentValidation.AspNetCore;
 
 namespace CaWorkshop.WebUI
 {
@@ -31,7 +33,9 @@ namespace CaWorkshop.WebUI
             services.AddInfrastructure(Configuration);
             services.AddApplication(Configuration);
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddFluentValidation(fv => 
+                    fv.RegisterValidatorsFromAssemblyContaining<IApplicationDbContext>());
             services.AddRazorPages();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
