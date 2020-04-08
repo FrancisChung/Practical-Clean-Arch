@@ -1,9 +1,12 @@
 ﻿using CaWorkshop.Domain.Entities;
 using System;
 using System.Linq.Expressions;
+using AutoMapper;
+using CaWorkshop.Application.Common.Mappings;
+
 namespace CaWorkshop.Application.TodoLists.Queries.GetTodoLists
 {
-    public class TodoItemDto
+    public class TodoItemDto : IMapFrom<TodoItem>
     {
         public long Id { get; set; }
 
@@ -17,5 +20,11 @@ namespace CaWorkshop.Application.TodoLists.Queries.GetTodoLists
 
         public string Note { get; set; }
 
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<TodoItem, TodoItemDto>()
+                .ForMember(d => d.Priority, opt =>
+                    opt.MapFrom(s => (int)s.Priority));
+        }
     }
 }
