@@ -28,20 +28,7 @@ namespace CaWorkshop.Application.TodoLists.Queries.GetTodoLists
             CancellationToken cancellationToken)
         {
             return await _context.TodoLists
-                .Select(l => new TodoListDto
-                {
-                    Id = l.Id,
-                    Title = l.Title,
-                    Items = l.Items.Select(i => new TodoItemDto
-                    {
-                        Id = i.Id,
-                        ListId = i.ListId,
-                        Title = i.Title,
-                        Done = i.Done,
-                        Priority = (int)i.Priority,
-                        Note = i.Note
-                    }).ToList()
-                })
+                .Select(TodoListDto.Projection)
                 .ToListAsync(cancellationToken);
         }
     }
