@@ -1,4 +1,5 @@
-﻿using CaWorkshop.Application.Common.Interfaces;
+﻿using System.ComponentModel.DataAnnotations;
+using CaWorkshop.Application.Common.Interfaces;
 using CaWorkshop.Domain.Entities;
 using MediatR;
 using System.Threading;
@@ -8,6 +9,8 @@ namespace CaWorkshop.Application.TodoLists.Commands.CreateTodoList
 {
     public class CreateTodoListCommand : IRequest<int>
     {
+        [Required]
+        [StringLength(240)]
         public string Title { get; set; }
     }
 

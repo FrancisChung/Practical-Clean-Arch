@@ -1,4 +1,5 @@
-﻿using CaWorkshop.Application.Common.Exceptions;
+﻿using System.ComponentModel.DataAnnotations;
+using CaWorkshop.Application.Common.Exceptions;
 using CaWorkshop.Application.Common.Interfaces;
 using CaWorkshop.Domain.Entities;
 using MediatR;
@@ -11,6 +12,8 @@ namespace CaWorkshop.Application.TodoLists.Commands.UpdateTodoList
     {
         public int Id { get; set; }
 
+        [Required]
+        [StringLength(240)]
         public string Title { get; set; }
     }
 
