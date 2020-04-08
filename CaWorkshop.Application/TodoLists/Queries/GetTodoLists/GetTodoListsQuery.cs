@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace CaWorkshop.Application.TodoLists.Queries.GetTodoLists
 {
-    public class GetTodoListsQuery : IRequest<List<TodoList>>
+    public class GetTodoListsQuery : IRequest<List<TodoListDto>>
     {
     }
 
     public class GetTodoListsQueryHandler
-        : IRequestHandler<GetTodoListsQuery, List<TodoList>>
+        : IRequestHandler<GetTodoListsQuery, List<TodoListDto>>
     {
         private readonly IApplicationDbContext _context;
 
@@ -23,26 +23,26 @@ namespace CaWorkshop.Application.TodoLists.Queries.GetTodoLists
             _context = context;
         }
 
-        public async Task<List<TodoList>> Handle(
+        public async Task<List<TodoListDto>> Handle(
             GetTodoListsQuery request,
             CancellationToken cancellationToken)
         {
             return await _context.TodoLists
-                .Select(l => new TodoList
+                .Select(l => new TodoListDto
                 {
                     Id = l.Id,
                     Title = l.Title,
-                    Items = l.Items.Select(i => new TodoItem
+                    Items = l.Items.Select(i => new TodoItemDto
                     {
                         Id = i.Id,
                         ListId = i.ListId,
                         Title = i.Title,
                         Done = i.Done,
-                        Priority = i.Priority,
+                        Priority = (int)i.Priority,
                         Note = i.Note
                     }).ToList()
                 })
-                .AsNoTracking().ToListAsync(cancellationToken);
+                .ToListAsync(cancellationToken);
         }
     }
 }
