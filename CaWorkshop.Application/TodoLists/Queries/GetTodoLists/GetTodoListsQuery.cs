@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 
 namespace CaWorkshop.Application.TodoLists.Queries.GetTodoLists
 {
@@ -17,10 +19,12 @@ namespace CaWorkshop.Application.TodoLists.Queries.GetTodoLists
         : IRequestHandler<GetTodoListsQuery,TodosVm>
     {
         private readonly IApplicationDbContext _context;
+        private IMapper _mapper;
 
-        public GetTodoListsQueryHandler(IApplicationDbContext context)
+        public GetTodoListsQueryHandler(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public async Task<TodosVm> Handle(
@@ -29,7 +33,8 @@ namespace CaWorkshop.Application.TodoLists.Queries.GetTodoLists
         {
             var vm = new TodosVm();
 
-            vm.Lists = await _context.TodoLists.Select(TodoListDto.Projection)
+            vm.Lists = await _context.TodoLists
+                .ProjectTo<TodoListDto>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
 
             return vm;
