@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace CaWorkshop.Application.TodoLists.Queries.GetTodoLists
 {
-    public class GetTodoListsQuery : IRequest<List<TodoListDto>>
+    public class GetTodoListsQuery : IRequest<TodosVm>
     {
     }
 
     public class GetTodoListsQueryHandler
-        : IRequestHandler<GetTodoListsQuery, List<TodoListDto>>
+        : IRequestHandler<GetTodoListsQuery,TodosVm>
     {
         private readonly IApplicationDbContext _context;
 
@@ -23,13 +23,16 @@ namespace CaWorkshop.Application.TodoLists.Queries.GetTodoLists
             _context = context;
         }
 
-        public async Task<List<TodoListDto>> Handle(
+        public async Task<TodosVm> Handle(
             GetTodoListsQuery request,
             CancellationToken cancellationToken)
         {
-            return await _context.TodoLists
-                .Select(TodoListDto.Projection)
+            var vm = new TodosVm();
+
+            vm.Lists = await _context.TodoLists.Select(TodoListDto.Projection)
                 .ToListAsync(cancellationToken);
+
+            return vm;
         }
     }
 }
