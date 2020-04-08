@@ -8,11 +8,8 @@ namespace CaWorkshop.Application.Common.Mappings
     {
         public MappingProfile()
         {
-            CreateMap<TodoList, TodoListDto>();
-
-            CreateMap<TodoItem, TodoItemDto>()
-                .ForMember(d => d.Priority, opt =>
-                    opt.MapFrom(s => (int) s.Priority));
+            new TodoListDto().Mapping(this);
+            new TodoItemDto().Mapping(this);
         }
     }
 }
