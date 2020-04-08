@@ -11,18 +11,21 @@ namespace CaWorkshop.Application.TodoLists.Commands.CreateTodoList
         public string Title { get; set; }
     }
 
-    public class CreateTodoListCommandHandler : IRequestHander<CreateTodoListCommand, int>
+    public class CreateTodoListCommandHandler
+        : IRequestHandler<CreateTodoListCommand, int>
     {
-        private readonly IApplicationDbContext _dbContext;
+        private readonly IApplicationDbContext _context;
 
         public CreateTodoListCommandHandler(IApplicationDbContext context)
         {
             _context = context;
         }
 
-        public async Task<int> Handle(CreateTodoListCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(CreateTodoListCommand request,
+            CancellationToken cancellationToken)
         {
             var entity = new TodoList();
+
             entity.Title = request.Title;
 
             _context.TodoLists.Add(entity);
