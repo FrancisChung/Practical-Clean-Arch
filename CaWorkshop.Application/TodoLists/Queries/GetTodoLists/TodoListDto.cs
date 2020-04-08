@@ -18,7 +18,7 @@ namespace CaWorkshop.Application.TodoLists.Queries.GetTodoLists
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<TodoList, TodoListDto>()
+            profile.CreateMap<TodoList, TodoListDto>();
         }
     }
 }
