@@ -41,7 +41,8 @@ namespace CaWorkshop.Application.TodoLists.Queries.GetTodoLists
                         Priority = i.Priority,
                         Note = i.Note
                     }).ToList()
-                }).ToListAsync(cancellationToken);
+                })
+                .AsNoTracking().ToListAsync(cancellationToken);
         }
     }
 }
